@@ -2,7 +2,7 @@
 title: Spring
 description: 
 published: true
-date: 2020-09-09T13:21:48.127Z
+date: 2020-09-09T15:10:35.075Z
 tags: spring
 editor: markdown
 ---
@@ -165,7 +165,10 @@ public void refresh() throws BeansException, IllegalStateException {
 
 
 
+# Spring接口
 
+## BeanFactory
+## NamespaceHandler
 
 
 
