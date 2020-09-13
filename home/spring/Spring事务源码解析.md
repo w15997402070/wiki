@@ -209,3 +209,30 @@ public void init() {
 		return null;
 	}
 ```
+
+## 事务相关类
+
+* TransactionStatus
+
+    ```java
+    public interface TransactionStatus extends SavepointManager, Flushable {
+    
+    	boolean isNewTransaction();
+    
+    	boolean hasSavepoint();
+    
+    	void setRollbackOnly();
+    
+    	boolean isRollbackOnly();
+    
+    	@Override
+    	void flush();
+    
+    	boolean isCompleted();
+    
+    }
+    ```
+
+    
+
+* 
