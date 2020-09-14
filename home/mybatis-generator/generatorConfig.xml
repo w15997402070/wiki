@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--resource：配置资源加载地址，使用resource，MBG从classpath开始找
+    url：配置资源加载地质，使用URL的方式 例如:file:///-->
+    <properties resource="generatorConfig.xml"></properties>
+    <!--mysql 连接数据库jar 这里选择自己本地位置-->
+    <classPathEntry location="D:\maven\apache-maven-3.3.9\respository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+    <!--flat 默认为当前数据库中的字段生成一个实体类-->
+    <context id="testTable" targetRuntime="Mybatis3" defaultModelType="flat">
+        <!-- 生成的Java文件的编码 -->
+        <property name="mergeable" value="false"></property>
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化java代码 -->
+        <property name="javaFormatter"
+                  value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化XML代码 -->
+        <property name="xmlFormatter"
+                  value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!--beginningDelimiter和endingDelimiter的默认值为双引号(")，
+        在Mysql中不能这么写，所以还要将这两个默认值改为**反单引号(`)**-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!--<plugin type="com.dc.core.plugin.OverIsMergeablePlugin"></plugin>-->
+        <!--该元素有一个可选属性type,可以指定用户的实现类，
+        该类需要实现org.mybatis.generator.api.CommentGenerator接口。而且必有一个默认的构造方法。
+        这个属性接收默认的特殊值DEFAULT，会使用默认的实现类org.mybatis.generator.internal.DefaultCommentGenerator-->
+        <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <!--*阻止**生成注释，默认为false-->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 阻止**生成的注释包含时间戳，默认为false-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--数据库连接的信息：驱动类、连接地址、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/rfq_db"
+                        userId="root" password=""/>
+
+        <!-- java类型处理器
+        用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+        注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；
+        -->
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <!--
+            true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+            false：默认,
+                scale>0;length>18：使用BigDecimal;
+                scale=0;length[10,18]：使用Long；
+                scale=0;length[5,9]：使用Integer；
+                scale=0;length<5：使用Short；
+         -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- targetProject:生成PO类的位置 -->
+        <javaModelGenerator targetPackage="com.ouyeel.mapper" targetProject="D:/idea/oyys-rfq/tbq-service/src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="false"/>
+            <!-- 设置是否在getter方法中，对String类型字段调用trim()方法 -->
+            <property name="trimSings" value="false"/>
+        </javaModelGenerator>
+        <!-- targetProject:mapper映射文件生成的位置
+           如果maven工程只是单独的一个工程，targetProject="src/main/java"
+           若果maven工程是分模块的工程，targetProject="所属模块的名称"，例如：
+           targetProject="ecps-manager-mapper"，下同-->
+        <sqlMapGenerator targetPackage="com.ouyeel.mapper" targetProject="D:/idea/oyys-rfq/tbq-service/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <!-- targetPackage：mapper接口生成的位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.ouyeel.mapper" targetProject="D:/idea/oyys-rfq/tbq-service/src/main/java">
+            <!-- enableSubPackages:是否让schema作为包的后缀 -->
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        <!-- 指定数据库表 -->
+        <!--tableName：指定要生成的表名，可以使用SQL通配符匹配多个表 例如: <table tableName="%" 可以配置多张表/>-->
+        <table tableName="tbq_expert_message" domainObjectName="TbqExpertBo"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

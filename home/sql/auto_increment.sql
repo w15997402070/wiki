@@ -1,0 +1,29 @@
+SELECT
+  t.TABLE_NAME,
+  c.COLUMN_NAME,
+  ts.AUTO_INCREMENT
+FROM
+  INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS t,
+  information_schema.TABLES AS ts,
+  information_schema.KEY_COLUMN_USAGE AS c
+WHERE
+  t.TABLE_NAME = ts.TABLE_NAME
+  AND ts.TABLE_NAME  = c.TABLE_NAME
+  AND t.TABLE_SCHEMA = 'rfq_db'
+  AND t.`TABLE_NAME` LIKE 'rfq%'
+  AND t.CONSTRAINT_TYPE = 'PRIMARY KEY'
+  ORDER BY ts.`AUTO_INCREMENT` DESC;
+  
+SELECT 
+  c.`TABLE_NAME` ,c.`COLUMN_NAME`,c.`COLUMN_KEY`,t.auto_increment
+FROM
+  information_schema.`COLUMNS` AS c,
+  information_schema.`TABLES` AS t 
+WHERE c.`TABLE_NAME` = t.table_name
+AND c.`TABLE_SCHEMA` = 'rfq_db' 
+AND c.`TABLE_NAME` LIKE 'rfq%'
+AND c.`COLUMN_KEY` = 'pri'
+AND t.`AUTO_INCREMENT` IS NOT NULL;
+
+ALTER TABLE rfq_approval CHANGE APPROVAL_CODE APPROVAL_CODE VARCHAR(36) NOT NULL COMMENT '审批流编号';
+

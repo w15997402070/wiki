@@ -1,0 +1,1 @@
+![1565082458433](D:\data\notes\notes\sql\sql server\SqlServer常量.assets\1565082458433.png)

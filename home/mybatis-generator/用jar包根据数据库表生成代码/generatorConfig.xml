@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="D:\maven\apache-maven-3.3.9\respository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+
+    <context id="mysqlTables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 自动识别数据库关键字，默认false，如果设置为true，根据SqlReservedWords中定义的关键字列表；
+        一般保留默认值，遇到数据库关键字（Java关键字），使用columnOverride覆盖
+        -->
+        <property name="autoDelimitKeywords" value="false"/>
+        <!--&lt;!&ndash; 生成的Java文件的编码 &ndash;&gt;-->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!--&lt;!&ndash; 格式化java代码 &ndash;&gt;-->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!--&lt;!&ndash; 格式化XML代码 &ndash;&gt;-->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!--beginningDelimiter和endingDelimiter的默认值为双引号(")，
+       在Mysql中不能这么写，所以还要将这两个默认值改为**反单引号(`)**-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <!-- 是否去除自动生成的注释true:是 false:否 -->
+        <!-- 插件 ：其他插件参考http://www.jianshu.com/p/1b826d43dbaf-->
+        <!--插件 ：用来给Java模型生成equals和hashcode方法-->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <!--插件 ：用来为生成的Java模型类添加序列化接口-->
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <!--&lt;!&ndash;插件 ：生成的Java模型创建一个toString方法&ndash;&gt;-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+            <property name="searchString" value="Example$"/>
+            <property name="replaceString" value="Criteria"/>
+        </plugin>
+        <!-- 注释 -->
+        <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator">
+            <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true"/>
+            <!-- 是否给实体类生成的备注的注释 true：是 ： 默认为false:否 -->
+            <property name="addRemarkComments" value="true"/>
+            <!-- 是否去掉注释代时间戳 true：是 ： false:否,默认yyyy-MM-dd HH:mm:ss（1.3.5-chinese-annotation修改版）-->
+            <property name="suppressDate" value="false"/>
+            <property name="dateFormat" value="yyyy/MM/dd HH:mm"/>
+
+            <!-- 自己添加的参数属性:数据表字段的get、set方法是否添加final关键字,默认为true -->
+            <property name="addMethodFinal" value="false"/>
+            <property name="author" value="orange1438"/>
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/rfq_db"
+                        userId="root"
+                        password="">
+        </jdbcConnection>
+        <javaTypeResolver type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="java" targetProject="D:/data/generator">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="false" />
+        </javaModelGenerator>
+
+        <sqlMapGenerator targetPackage="java"  targetProject="D:/data/generator">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+
+        <javaClientGenerator type="XMLMAPPER" targetPackage="java"  targetProject="D:/data/generator">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+
+        <table tableName="tbq_expert_message" domainObjectName="TbqExpertVo"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <!--是否用数据库字段作为实体类属性字段-->
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+    </context>
+</generatorConfiguration>

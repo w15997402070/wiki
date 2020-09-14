@@ -1,0 +1,15 @@
+# 字段解释
+
+* earlySingletonExposure：从字面的意思理解就是提早曝光的单例
+* AbstractRefreshableApplicationContext.allowCircularReferences：是否允许循环依赖
+* AbstractRefreshableApplicationContext.allowBeanDefinitionOverriding:是否允许覆盖同名称的不同定义的对象
+* isSingletonCurrentlyInCreation(beanName)：该bean是否在创建中
+
+
+
+
+
+## Aware
+
+XXXAware在spring里表示对XXX可以感知，通俗点解释就是：如果在某个类里面想要使用spring的一些东西，就可以通过实现XXXAware接口告诉spring，spring看到后就会给你送过来，而接收的方式是通过实现接口唯一的方法set-XXX。比如，有一个类想要使用当前的ApplicationContext，那么我们只需要让它实现ApplicationContextAware接口，然后实现接口中唯一的方法void setApplicationContext（ApplicationContext applicationContext）就可以了，spring会自动调用这个方法将applicationContext传给我们，我们只需要接收就可以了！
+
