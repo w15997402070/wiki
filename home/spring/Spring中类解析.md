@@ -1,3 +1,12 @@
+---
+title: Spring中类解析
+description: 
+published: true
+date: 2020-09-16T14:16:47.082Z
+tags: 
+editor: markdown
+---
+
 ### 类解析
 
 [toc]
@@ -196,3 +205,29 @@ public class MapperScannerRegistrar implements ImportBeanDefinitionRegistrar, Re
 `org.mybatis.spring.mapper.MapperScannerConfigurer`扫描包
 
 ## AbstractBeanDefinition
+
+## InitializingBean
+实现该接口的类,在这个Bean属性初始化之后的会调用`afterPropertiesSet()`处理方法,一般可以在Bean初始化完之后做属性验证
+```java
+public interface InitializingBean {
+
+	void afterPropertiesSet() throws Exception;
+
+}
+```
+
+例如上面`MapperScannerConfigurer`实现了`InitializingBean接口,在初始化完这个类后会验证basePackage
+```java
+  // MapperScannerConfigurer # afterPropertiesSet()
+  @Override
+  public void afterPropertiesSet() throws Exception {
+    notNull(this.basePackage, "Property 'basePackage' is required");
+  }
+	
+  // Assert # notNull()
+  public static void notNull(@Nullable Object object, String message) {
+        if (object == null) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+```
