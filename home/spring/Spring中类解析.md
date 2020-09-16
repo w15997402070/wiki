@@ -2,7 +2,7 @@
 title: Spring中类解析
 description: 
 published: true
-date: 2020-09-16T14:34:07.134Z
+date: 2020-09-16T15:26:49.453Z
 tags: 
 editor: markdown
 ---
@@ -231,3 +231,41 @@ public interface InitializingBean {
         }
     }
 ```
+
+## BeanPostProcessor
+
+```java
+public interface BeanPostProcessor {
+
+	/**
+	 * 实例化、依赖注入完毕，在调用显示的初始化之前完成一些定制的初始化任务
+	 */
+	@Nullable
+	default Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+	/**
+	 * 实例化、依赖注入、初始化完毕时执行
+	 */
+	@Nullable
+	default Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
+		return bean;
+	}
+
+}
+```
+
+## BeanFactoryPostProcessor
+BeanFactoryPostProcessor：允许自定义对ApplicationContext的 bean definitions 进行修饰，扩展功能。
+```java
+@FunctionalInterface
+public interface BeanFactoryPostProcessor {
+
+	void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException;
+
+}
+```
+
+`BeanPostProcessor` 和 `BeanFactoryPostProcessor` 具体参考文章
+https://www.cnblogs.com/duanxz/p/3750725.html
