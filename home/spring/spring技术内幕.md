@@ -1,6 +1,21 @@
-# SPING源码解析
+---
+title: spring技术内幕
+description: 
+published: true
+date: 2020-09-16T15:09:37.851Z
+tags: 
+editor: markdown
+---
 
-## spring IOC
+# Spring源码解析
+
+## Bean生命周期
+> 实例化Bean对象 -> 设置对象属性 -> 检查Aware相关接口并设置相关依赖 -> BeanPostProcessor前置处理 -> 检查是否实现了initializingBean -> 检查是否配置了init-method方法 -> BeanPostProcessor后置处理 -> 注册必要的相关回调接口 -> 使用 -> 检查是否实现DisposableBean接口 -> 是否配置有自定义的destroy方法
+{.is-info}
+
+
+
+## Spring IOC
 
 ### 注入方式
 
