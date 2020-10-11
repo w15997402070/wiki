@@ -235,4 +235,23 @@ public void init() {
 
     
 
+* **PlatformTransactionManager**
+
+    主要有三个方法：
+
+    - commit 事务提交；
+    - rollback 事务回滚；
+    - getTransaction 获取事务状态。
+
+* **TransactionDefinition**
+
+    用来定义事务相关的属性，给事务管理器PlatformTransactionManager使用
+
+    这个接口有下面四个主要方法：
+
+    - getIsolationLevel：获取隔离级别；
+    - getPropagationBehavior：获取传播行为；
+    - getTimeout：获取超时时间；
+    - isReadOnly：是否只读（保存、更新、删除时属性变为false--可读写，查询时为true--只读）
+
 * 

@@ -269,3 +269,27 @@ public interface BeanFactoryPostProcessor {
 
 `BeanPostProcessor` 和 `BeanFactoryPostProcessor` 具体参考文章
 https://www.cnblogs.com/duanxz/p/3750725.html
+
+## FactoryBean
+
+
+
+## ImportSelector
+
+ImportSelector接口是至spring中导入外部配置的核心接口，在SpringBoot的自动化配置和@EnableXXX(功能性注解)都有它的存在.
+
+该接口文档上说的明明白白，其主要作用是收集需要导入的配置类，selectImports()方法的返回值就是我们向Spring容器中导入的类的全类名。如果该接口的实现类同时实现EnvironmentAware， BeanFactoryAware  ，BeanClassLoaderAware或者ResourceLoaderAware，那么在调用其selectImports方法之前先调用上述接口中对应的方法，如果需要在所有的@Configuration处理完在导入时可以实现`DeferredImportSelector`接口。
+
+```java
+public interface ImportSelector {
+
+	String[] selectImports(AnnotationMetadata importingClassMetadata);
+
+	@Nullable
+	default Predicate<String> getExclusionFilter() {
+		return null;
+	}
+
+}
+```
+
