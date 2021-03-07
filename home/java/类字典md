@@ -1,0 +1,17 @@
+# 类字典
+
+## Java
+
+## Spring
+
+* org.springframework.beans.factory.support.AbstractBeanDefinition
+* org.springframework.beans.factory.support.RootBeanDefinition
+* 
+
+## Mybatis
+
+## Dubbo
+
+* org.apache.dubbo.config.spring.schema.DubboNamespaceHandler  : Dubbo  xml 配置解析的入口类
+* org.apache.dubbo.config.spring.schema.DubboBeanDefinitionParser : DubboBeanDefinitionParser类实现了BeanDefinitionParser这个接口，负责将标签转换成bean定义对象BeanDefinition
+

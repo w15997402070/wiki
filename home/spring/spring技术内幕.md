@@ -61,8 +61,6 @@ editor: markdown
 2. setter注入
 3. 构造器注入
 
-
-
 ## 设计与实现
 
 ### BeanFactory

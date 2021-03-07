@@ -435,5 +435,17 @@ exit：-- 退出软链接
 
 `docker进入oracle账户,默认密码好像就是oracle`
 
+## Docker安装 Minio
+
+```shell
+docker run -p 9000:9000 --name minio \
+-d --restart=always \
+-e "MINIO_ACCESS_KEY=admin" \
+-e "MINIO_SECRET_KEY=admin98765" \
+-v /mydata/minio/data:/data \
+-v /mydata/minio/config:/root/.minio \
+minio/minio server /data
+```
+
 
 

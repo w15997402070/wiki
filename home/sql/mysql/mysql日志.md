@@ -35,6 +35,18 @@ binlog附加参数:
 * `--binlog-do-db=db_name`:参数表示某个(db_name)数据库记录binlog
 * `--binlog-ignore-db=db_name`显示指定忽略某个(db_name)数据库的binlog
 
+binlog不限制大小,追加写入
+
+binlog是逻辑日志,就是记录一条语句的原始逻辑,binlog 记录的是100+100也就是200的来源逻辑
+
+redo log 重做日志,是物理日志,记录InnoDB存储引擎的事务日志
+
+记录的是结果,例如张三存储200元redo log记录的就是200
+
+MySQL的WAL机制(Write-Ahead Logging),先写日志再写磁盘
+
+redo log有大小,不会无限写入
+
 ### 查询日志
 
 查询日记记录Mysql中所有的Query
